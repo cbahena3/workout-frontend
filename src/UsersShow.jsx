@@ -5,6 +5,10 @@ export function UsersShow(props) {
     const params = new FormData(event.target);
     props.onUpdateUser(props.user.id, params, () => event.target.reset());
   };
+  const handleClick = () => {
+    props.onDestroyUser(props.user);
+  };
+
   return (
     
     <div>
@@ -31,6 +35,7 @@ export function UsersShow(props) {
             Password Confirmation: <input defaultValue={props.user.password_confirmation} name="height" type="password" />
           </div>
           <button type="submit">Update user</button>
+          <button onClick={handleClick}>Delete user</button>
         </form>
       </div>
     </div>

@@ -4,6 +4,10 @@ import { UsersIndex } from "./UsersIndex"
 import { UsersNew } from "./UsersNew";
 import { UsersShow } from "./UsersShow";
 import { useState, useEffect } from "react";
+import { Signup } from "./Signup";
+import { Login } from "./Login";
+import { Logout } from "./Logout";
+import { Route, Routes } from "react-router-dom";
 
 export function Content() {
   const [users, setUsers] = useState([]);
@@ -54,14 +58,29 @@ export function Content() {
       handleClose();
     });
   };
+  const handleDestroyUser = (user) => {
+    console.log("handleDestroyUser", user);
+    // eslint-disable-next-line no-unused-vars
+    axios.delete(`http://localhost:3000/users/${user.id}.json`).then((response) => {
+      setUsers(users.filter((p) => p.id !== user.id));
+      handleClose();
+    });
+  };
+
+
 
   useEffect(handleIndexUsers, []);
   return (
     <main>
-      <UsersNew onCreateUser = {handleCreateUser}/>
-      <UsersIndex users = {users} onShowUser = {handleShowUser}/>
+      <Routes>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/users" element={<UsersIndex users = {users} onShowUser = {handleShowUser}/>} />
+      </Routes>
+      {/* <UsersNew onCreateUser = {handleCreateUser}/> */}
       <Modal show={isUsersShowVisible} onClose = {handleClose}>
-        <UsersShow user={currentUser} onUpdateUser = {handleUpdateUser} />
+        <UsersShow user={currentUser} onUpdateUser = {handleUpdateUser} onDestroyUser = {handleDestroyUser}/>
       </Modal>
     </main>
   )
