@@ -10,6 +10,7 @@ export function ExercisesIndex(props){
         {/* <video src={exercise.video_url} controls></video>  WILL NOT RUN VIDEO */}
         <p>Description: {exercise.description}</p>
         {/* <p>Muscles Used:</p> cant get this to show */}
+        <button onClick={() => props.onShowExercise(exercise)}>More info</button>
       </div>
      ))}
     </div>

@@ -10,13 +10,17 @@ import { Login } from "./Login";
 import { Logout } from "./Logout";
 import { Route, Routes } from "react-router-dom";
 import { ExercisesIndex } from "./ExercisesIndex";
+import { ExercisesModal } from "./ExercisesModal";
 import { ExercisesNew } from "./ExercisesNew";
+import { ExercisesShow } from "./ExercisesShow";
 
 export function Content() {
   const [users, setUsers] = useState([]);
   const [isUsersShowVisible, setIsUsersShowVisible] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
+  const [isExercisesShowVisible, setIsExercisesShowVisible] = useState(false);
+  const [currentExercise, setCurrentExercise] = useState({});
 
   const handleIndexUsers = () => {
     console.log("handleIndexUsers");
@@ -53,6 +57,17 @@ export function Content() {
     setIsUsersShowVisible(false);
   };
 
+  const handleShowExercise = (exercise) => {
+    console.log("handleShowExcercise", exercise);
+    setIsExercisesShowVisible(true);
+    setCurrentExercise(exercise);
+  };
+    
+  const handleCloseExercise = () => {
+    console.log("handleClose");
+    setIsExercisesShowVisible(false);
+  };
+
   const handleUpdateUser = (id, params, successCallback) => {
     console.log("handleUpdateUser", params);
     axios.patch(`http://localhost:3000/users/${id}.json`, params).then((response) => {
@@ -87,22 +102,28 @@ export function Content() {
        });
      };
 
-
+  useEffect(handleIndexUsers, []);
   useEffect(handleIndexExercises, []);
   return (
     <main>
-      <ExercisesNew onCreateExercise={handleCreateExercise} />
-      <ExercisesIndex exercises = {exercises}/>
+      <ExercisesIndex exercises={exercises} onShowExercise={handleShowExercise} />
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/users" element={<UsersIndex users = {users} onShowUser = {handleShowUser}/>} />
+
+
+        <Route path="/new-exercise" element={<ExercisesNew onCreateExercise={handleCreateExercise} />} />
       </Routes>
       {/* <UsersNew onCreateUser = {handleCreateUser}/> */}
       <Modal show={isUsersShowVisible} onClose = {handleClose}>
         <UsersShow user={currentUser} onUpdateUser = {handleUpdateUser} onDestroyUser = {handleDestroyUser}/>
       </Modal>
+
+      <ExercisesModal show={isExercisesShowVisible} onCloseExercise={handleCloseExercise}>
+        <ExercisesShow exercise={currentExercise} />
+      </ExercisesModal>
     </main>
   )
 }
