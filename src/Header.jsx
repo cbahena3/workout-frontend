@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom"
-import { Signup } from "./Signup"
-import { Logout } from "./Logout"
 import axios from "axios"
 
 export function Header() {

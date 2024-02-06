@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 import { Modal } from "./Modal";
 import { UsersIndex } from "./UsersIndex"
@@ -8,6 +9,8 @@ import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { Logout } from "./Logout";
 import { Route, Routes } from "react-router-dom";
+import { ExercisesIndex } from "./ExercisesIndex";
+import { ExercisesNew } from "./ExercisesNew";
 
 export function Content() {
   const [users, setUsers] = useState([]);
@@ -26,6 +29,14 @@ export function Content() {
   const handleCreateUser = (params, successCallback) => {
     console.log("handleCreateUser", params);
     axios.post("http://localhost:3000/users.json", params).then((response) => {
+      setUsers([...users, response.data]);
+      successCallback();
+    });
+  };
+
+  const handleCreateExercise = (params, successCallback) => {
+    console.log("handleCreateExercise", params);
+    axios.post("http://localhost:3000/exercises.json", params).then((response) => {
       setUsers([...users, response.data]);
       successCallback();
     });
@@ -67,11 +78,21 @@ export function Content() {
     });
   };
 
+  const [exercises, setExercises] = useState([]);
+  const handleIndexExercises = () => {
+    console.log("running handleIndexExercise");
+    axios.get("http://localhost:3000/exercises.json").then((response) => {
+         console.log(response.data);
+         setExercises(response.data);
+       });
+     };
 
 
-  useEffect(handleIndexUsers, []);
+  useEffect(handleIndexExercises, []);
   return (
     <main>
+      <ExercisesNew onCreateExercise={handleCreateExercise} />
+      <ExercisesIndex exercises = {exercises}/>
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
