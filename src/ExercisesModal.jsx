@@ -7,7 +7,7 @@ export function ExercisesModal(props) {
       <div className="modal-background">
         <section className="modal-main">
           {props.children}
-          <button className="close" type="button" onClick={props.onClose}>
+          <button className="close" type="button" onClick={props.onCloseExercise}>
             &#x2715;
           </button>
         </section>
