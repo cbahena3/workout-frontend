@@ -10,6 +10,7 @@ export function UsersIndex(props) {
           <img src={user.image_url} />
           <p>name: {user.name}</p>
           <p>email: {user.email}</p>
+          <button onClick={() => props.onShowUser(user)}>More info</button>
         </div>
       ))}
     </div>
