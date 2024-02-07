@@ -13,6 +13,7 @@ import { ExercisesIndex } from "./ExercisesIndex";
 import { ExercisesModal } from "./ExercisesModal";
 import { ExercisesNew } from "./ExercisesNew";
 import { ExercisesShow } from "./ExercisesShow";
+import { MuscleGroupsIndex } from "./MuscleGroupsIndex";
 
 export function Content() {
   const [users, setUsers] = useState([]);
@@ -22,6 +23,8 @@ export function Content() {
   const [isExercisesShowVisible, setIsExercisesShowVisible] = useState(false);
   const [currentExercise, setCurrentExercise] = useState({});
 
+  const [muscles, setMuscles] = useState([]);
+
   const handleIndexUsers = () => {
     console.log("handleIndexUsers");
     axios.get("http://localhost:3000/users.json").then((response) => {
@@ -29,6 +32,15 @@ export function Content() {
       setUsers(response.data);
     });
   };
+
+  const handleIndexMuscles = () => {
+    console.log("handleIndexMuscles");
+    axios.get("http://localhost:3000/muscle_groups.json").then((response) => {
+      console.log(response.data);
+      setMuscles(response.data);
+    });
+  };
+
 
   const handleCreateUser = (params, successCallback) => {
     console.log("handleCreateUser", params);
@@ -128,9 +140,10 @@ export function Content() {
 
   useEffect(handleIndexUsers, []);
   useEffect(handleIndexExercises, []);
+  useEffect(handleIndexMuscles, []);
   return (
     <main>
-      <ExercisesIndex exercises={exercises} onShowExercise={handleShowExercise} />
+      <MuscleGroupsIndex muscles={muscles}/>
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
@@ -138,7 +151,8 @@ export function Content() {
         <Route path="/users" element={<UsersIndex users = {users} onShowUser = {handleShowUser}/>} />
 
 
-        <Route path="/new-exercise" element={<ExercisesNew onCreateExercise={handleCreateExercise} />} />
+        <Route path="/new-exercises" element={<ExercisesNew onCreateExercise={handleCreateExercise} />} />
+        <Route path="/exercises" element={<ExercisesIndex exercises={exercises} onShowExercise={handleShowExercise} />} />
       </Routes>
       {/* <UsersNew onCreateUser = {handleCreateUser}/> */}
       <Modal show={isUsersShowVisible} onClose = {handleClose}>
