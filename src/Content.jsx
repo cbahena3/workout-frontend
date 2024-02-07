@@ -2,6 +2,8 @@
 import axios from "axios";
 import { ExerciseRoutinesIndex } from "./ExerciseRoutinesIndex";
 import { ExerciseRoutinesNew } from "./ExerciseRoutinesNew";
+import { ExerciseRoutinesModal } from "./ExerciseRoutinesModal";
+import { ExerciseRoutinesShow } from "./ExerciseRoutinesShow";
 import { Modal } from "./Modal";
 import { UsersIndex } from "./UsersIndex"
 import { UsersNew } from "./UsersNew";
@@ -27,6 +29,9 @@ export function Content() {
 
   const [muscles, setMuscles] = useState([]);
   const [exerciseRoutines, setExerciseRoutines] = useState([]);
+
+  const [exerciseRoutineVisible, setExerciseRoutineVisible] = useState(false);
+  const [currentExerciseRoutine, setCurrentExerciseRoutine] = useState({});
 
   const handleIndexUsers = () => {
     console.log("handleIndexUsers");
@@ -98,6 +103,17 @@ export function Content() {
     setIsExercisesShowVisible(false);
   };
 
+  const handleShowExcerciseRoutine = (excerciseRoutine) => {
+    console.log("handleShowExcerciseRoutine", excerciseRoutine);
+    setExerciseRoutineVisible(true);
+    setCurrentExerciseRoutine(excerciseRoutine);
+  };
+    
+  const handleCloseExcerciseRoutine = () => {
+    console.log("handleCloseExcerciseRoutine");
+    setExerciseRoutineVisible(false);
+  };
+
   const handleUpdateUser = (id, params, successCallback) => {
     console.log("handleUpdateUser", params);
     axios.patch(`http://localhost:3000/users/${id}.json`, params).then((response) => {
@@ -164,7 +180,13 @@ export function Content() {
   return (
     <main>
       <ExerciseRoutinesNew onCreateExerciseRoutine ={handleCreateExerciseRoutine}/>
-      <ExerciseRoutinesIndex exerciseRoutines = {exerciseRoutines}/>
+
+      <ExerciseRoutinesIndex exerciseRoutines = {exerciseRoutines} onShowExerciseRoutine = {handleShowExcerciseRoutine}/>
+
+      <ExerciseRoutinesModal show = {exerciseRoutineVisible} onCloseExerciseRoutine={handleCloseExcerciseRoutine}>
+        <ExerciseRoutinesShow currentExcerciseRoutine = {currentExerciseRoutine}/>
+      </ExerciseRoutinesModal>
+
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />

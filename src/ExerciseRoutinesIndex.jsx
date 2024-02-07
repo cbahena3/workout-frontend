@@ -9,6 +9,7 @@ export function ExerciseRoutinesIndex(props){
           <p> Routine ID: {exerciseRoutine.routine_id} </p>
           <p>Sets: {exerciseRoutine.sets}</p>
           <p>Reps: {exerciseRoutine.reps}</p>
+          <button onClick={() => props.onShowExerciseRoutine(exerciseRoutine)}>More info</button>
         </div>))}
     </div>
   )
