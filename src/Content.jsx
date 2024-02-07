@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import { ExerciseRoutinesIndex } from "./ExerciseRoutinesIndex";
+import { ExerciseRoutinesNew } from "./ExerciseRoutinesNew";
 import { Modal } from "./Modal";
 import { UsersIndex } from "./UsersIndex"
 import { UsersNew } from "./UsersNew";
@@ -63,6 +64,14 @@ export function Content() {
     console.log("handleCreateExercise", params);
     axios.post("http://localhost:3000/exercises.json", params).then((response) => {
       setUsers([...users, response.data]);
+      successCallback();
+    });
+  };
+
+  const handleCreateExerciseRoutine = (params, successCallback) => {
+    console.log("handleCreateExerciseRoutine", params);
+    axios.post("http://localhost:3000/exercise_routines.json", params).then((response) => {
+      setExerciseRoutines([...exerciseRoutines, response.data]);
       successCallback();
     });
   };
@@ -154,6 +163,7 @@ export function Content() {
     }, []);
   return (
     <main>
+      <ExerciseRoutinesNew onCreateExerciseRoutine ={handleCreateExerciseRoutine}/>
       <ExerciseRoutinesIndex exerciseRoutines = {exerciseRoutines}/>
       <Routes>
         <Route path="/signup" element={<Signup />} />
