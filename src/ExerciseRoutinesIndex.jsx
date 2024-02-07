@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-export function ExerciseRoutines(props){
+export function ExerciseRoutinesIndex(props){
   return(
     <div>
       <h1>Exercise Routines Available</h1>

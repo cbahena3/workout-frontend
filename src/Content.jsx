@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
-import { ExerciseRoutines } from "./ExerciseRoutines";
+import { ExerciseRoutinesIndex } from "./ExerciseRoutinesIndex";
 import { Modal } from "./Modal";
 import { UsersIndex } from "./UsersIndex"
 import { UsersNew } from "./UsersNew";
@@ -154,7 +154,7 @@ export function Content() {
     }, []);
   return (
     <main>
-      <ExerciseRoutines exerciseRoutines = {exerciseRoutines}/>
+      <ExerciseRoutinesIndex exerciseRoutines = {exerciseRoutines}/>
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
