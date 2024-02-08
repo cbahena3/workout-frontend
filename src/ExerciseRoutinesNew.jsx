@@ -1,17 +1,36 @@
 /* eslint-disable react/prop-types */
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 export function ExerciseRoutinesNew(props) {
+  const [exercises, setExercises] = useState([]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
     props.onCreateExerciseRoutine(params, () => event.target.reset());
   };
   
+  const getExercise = () => {
+    axios.get("http://localhost:3000/exercises.json").then((response) => {
+    console.log(response.data);
+    setExercises(response.data);
+    })
+  }
+
+  useEffect(getExercise, []);
+
   return(
     <div>
       <h1>Add exercise to routine</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          Exercise ID: <input name="exercise_id" type="text" />
+          <label>Choose an Exercise:</label>
+          <select name="exercise" id="exercise">
+            {exercises.map((exercise) => (
+              <option key={exercise.name}>{exercise.name}</option>
+            ))};
+          </select>
         </div>
         <div>
           Routine ID: <input name="routine_id" type="text" />

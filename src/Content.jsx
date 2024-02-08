@@ -272,13 +272,6 @@ export function Content() {
     }, []);
   return (
     <main>
-      <RoutinesModal show = {routinesVisible} onCloseRoutine = {handleCloseRoutine} >
-          <RoutinesShow routine = {currentRoutine} onUpdateRoutine = {handleUpdateRoutine} onDestroyRoutine = {handleDestroyRoutine} />
-      </RoutinesModal>
-
-      <RoutinesIndex routines = {routines} onShowRoutine = {handleShowRoutine} />
-      <RoutinesNew onCreateRoutine = {handleCreateRoutine} />
-
       <Routes>
         <Route path="/signup" element = {<Signup />} />
         <Route path="/login" element = {<Login />} />
@@ -291,11 +284,13 @@ export function Content() {
         <Route path="/" element={<MuscleGroupsIndex muscles={muscles}/>} />
 
         <Route path="/new_exercise_routine" element={<ExerciseRoutinesNew onCreateExerciseRoutine ={handleCreateExerciseRoutine}/>} />
-        <Route path="/exercise_routines" element={<ExerciseRoutinesIndex exerciseRoutines = {exerciseRoutines} onShowExerciseRoutine = {handleShowExcerciseRoutine}/>
-} />
+        <Route path="/exercise_routines" element={<ExerciseRoutinesIndex exerciseRoutines = {exerciseRoutines} onShowExerciseRoutine = {handleShowExcerciseRoutine}/>} />
 
+        <Route path="/routines" element={<RoutinesIndex routines = {routines} onShowRoutine = {handleShowRoutine}/>}/>
+        <Route path="/new_routines" element={<RoutinesNew onCreateRoutine = {handleCreateRoutine}/>}/>
       </Routes>
       {/* <UsersNew onCreateUser = {handleCreateUser}/> */}
+
       <Modal show={isUsersShowVisible} onClose = {handleClose}>
         <UsersShow user={currentUser} onUpdateUser = {handleUpdateUser} onDestroyUser = {handleDestroyUser}/>
       </Modal>
@@ -307,6 +302,11 @@ export function Content() {
       <ExerciseRoutinesModal show = {exerciseRoutineVisible} onCloseExerciseRoutine={handleCloseExcerciseRoutine}>
         <ExerciseRoutinesShow currentExcerciseRoutine = {currentExerciseRoutine} onUpdateExerciseRoutine={handleUpdateExcerciseRoutine} onDestroyExerciseRoutine={handleDestroyExerciseRoutine}/>
       </ExerciseRoutinesModal>
+
+      <RoutinesModal show = {routinesVisible} onCloseRoutine = {handleCloseRoutine} >
+          <RoutinesShow routine = {currentRoutine} onUpdateRoutine = {handleUpdateRoutine} onDestroyRoutine = {handleDestroyRoutine} />
+      </RoutinesModal>
+
     </main>
   )
 }
