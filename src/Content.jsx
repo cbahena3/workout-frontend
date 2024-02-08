@@ -147,6 +147,25 @@ export function Content() {
       handleClose();
     });
   };
+
+  const handleUpdateExcerciseRoutine = (id, params, successCallback) => {
+    console.log("handleUpdateExcerciseRoutine", params);
+    axios.patch(`http://localhost:3000/exercise_routines/${id}.json`, params).then((response) => {
+      setExerciseRoutines(
+        exerciseRoutines.map((exerciseRoutine) => {
+          if (exerciseRoutine.id === response.data.id) {
+            return response.data;
+          } else {
+            return exerciseRoutine;
+          }
+        })
+      );
+      successCallback();
+      handleClose();
+    });
+  };
+
+
   const handleDestroyUser = (user) => {
     console.log("handleDestroyUser", user);
     // eslint-disable-next-line no-unused-vars
@@ -160,6 +179,16 @@ export function Content() {
     axios.delete(`http://localhost:3000/exercises/${exercise.id}.json`).then((response) => {
       setExercises(exercises.filter((p) => p.id !== exercise.id));
       handleClose();
+    });
+  };
+
+  const handleDestroyExerciseRoutine = (exerciseRoutine) => {
+    console.log("handleDestroyExerciseRoutine", currentExerciseRoutine);
+    axios.delete(`http://localhost:3000/exercise_routines/${currentExerciseRoutine.id}.json`).then((response) => {
+      console.log(exerciseRoutines)
+      console.log(currentExerciseRoutine)
+      setExerciseRoutines(exerciseRoutines.filter((p) => p.id !== currentExerciseRoutine.id));
+      handleCloseExcerciseRoutine();
     });
   };
 
@@ -184,7 +213,7 @@ export function Content() {
       <ExerciseRoutinesIndex exerciseRoutines = {exerciseRoutines} onShowExerciseRoutine = {handleShowExcerciseRoutine}/>
 
       <ExerciseRoutinesModal show = {exerciseRoutineVisible} onCloseExerciseRoutine={handleCloseExcerciseRoutine}>
-        <ExerciseRoutinesShow currentExcerciseRoutine = {currentExerciseRoutine}/>
+        <ExerciseRoutinesShow currentExcerciseRoutine = {currentExerciseRoutine} onUpdateExerciseRoutine={handleUpdateExcerciseRoutine} onDestroyExerciseRoutine={handleDestroyExerciseRoutine}/>
       </ExerciseRoutinesModal>
 
       <Routes>
