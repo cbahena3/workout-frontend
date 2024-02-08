@@ -20,6 +20,8 @@ import { ExercisesShow } from "./ExercisesShow";
 import { MuscleGroupsIndex } from "./MuscleGroupsIndex";
 import { RoutinesIndex } from "./RoutinesIndex";
 import { RoutinesNew } from "./RoutinesNew";
+import { RoutinesModal } from "./RoutinesModal";
+import { RoutinesShow } from "./RoutinesShow";
 
 export function Content() {
   const [users, setUsers] = useState([]);
@@ -36,6 +38,9 @@ export function Content() {
   const [currentExerciseRoutine, setCurrentExerciseRoutine] = useState({});
 
   const [routines, setRoutines] = useState([]);
+
+  const [routinesVisible, setRoutinesVisible] = useState(false);
+  const [currentRoutine, setCurrentRoutine] = useState({});
 
   const handleIndexRoutines = () =>{
     console.log(handleIndexRoutines);
@@ -135,6 +140,17 @@ export function Content() {
     setExerciseRoutineVisible(false);
   };
 
+  const handleShowRoutine = (routine) =>{
+    console.log("handleShowRoutine", routine);
+    setRoutinesVisible(true);
+    setCurrentRoutine(routine);
+  };
+
+  const handleCloseRoutine = () =>{
+    console.log("handleCloseRoutine");
+    setRoutinesVisible(false);
+  };
+
   const handleUpdateUser = (id, params, successCallback) => {
     console.log("handleUpdateUser", params);
     axios.patch(`http://localhost:3000/users/${id}.json`, params).then((response) => {
@@ -150,6 +166,23 @@ export function Content() {
       successCallback();
       handleClose();
     });
+  };
+
+  const handleUpdateRoutine = (id, params, successCallback) => {
+    console.log("handleUpdateRoutine");
+    axios.patch(`http://localhost:3000/routines/${id}.json`, params).then((response)=>{
+      setRoutines(
+        routines.map((routine)=>{
+          if(routine.id === response.data.id){
+            return response.data;
+          } else {
+            return routine;
+          }
+        })
+      )
+      successCallback();
+      handleCloseRoutine();
+    })
   };
 
   const handleUpdateExercise = (id, params, successCallback) => {
@@ -230,9 +263,12 @@ export function Content() {
     }, []);
   return (
     <main>
-      <RoutinesIndex routines = {routines} />
-      <RoutinesNew onCreateRoutine = {handleCreateRoutine} />
+      <RoutinesModal show = {routinesVisible} onCloseRoutine = {handleCloseRoutine} >
+          <RoutinesShow routine = {currentRoutine} onUpdateRoutine = {handleUpdateRoutine}/>
+      </RoutinesModal>
 
+      <RoutinesIndex routines = {routines} onShowRoutine = {handleShowRoutine} />
+      <RoutinesNew onCreateRoutine = {handleCreateRoutine} />
 
       <Routes>
         <Route path="/signup" element = {<Signup />} />
