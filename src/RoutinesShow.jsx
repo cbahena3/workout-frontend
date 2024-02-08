@@ -5,6 +5,11 @@ export function RoutinesShow(props) {
     const params = new FormData(event.target);
     props.onUpdateRoutine(props.routine.id, params, () => event.target.reset());
   }
+
+  const handleClick = () => {
+    props.onDestroyRoutine(props.routine);
+  };
+
   return(
     <div>
       <h1>Routine Information </h1>
@@ -16,6 +21,7 @@ export function RoutinesShow(props) {
           </div>
           <button type="submit">Update Routine</button>
         </form>
+        <button onClick={handleClick}>Delete Routine</button>
     </div>
   )
 }

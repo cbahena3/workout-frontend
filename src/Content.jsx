@@ -28,6 +28,7 @@ export function Content() {
   const [isUsersShowVisible, setIsUsersShowVisible] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
+  const [exercises, setExercises] = useState([]);
   const [isExercisesShowVisible, setIsExercisesShowVisible] = useState(false);
   const [currentExercise, setCurrentExercise] = useState({});
 
@@ -48,6 +49,14 @@ export function Content() {
       console.log(response.data);
       setRoutines(response.data);
     })
+  };
+  
+  const handleIndexExercises = () => {
+    console.log("running handleIndexExercise");
+    axios.get("http://localhost:3000/exercises.json").then((response) => {
+      console.log(response.data);
+      setExercises(response.data);
+    });
   };
 
   const handleIndexUsers = () => {
@@ -239,21 +248,21 @@ export function Content() {
   const handleDestroyExerciseRoutine = (exerciseRoutine) => {
     console.log("handleDestroyExerciseRoutine", currentExerciseRoutine);
     axios.delete(`http://localhost:3000/exercise_routines/${currentExerciseRoutine.id}.json`).then((response) => {
-      console.log(exerciseRoutines)
-      console.log(currentExerciseRoutine)
       setExerciseRoutines(exerciseRoutines.filter((p) => p.id !== currentExerciseRoutine.id));
       handleCloseExcerciseRoutine();
     });
   };
 
-  const [exercises, setExercises] = useState([]);
-  const handleIndexExercises = () => {
-    console.log("running handleIndexExercise");
-    axios.get("http://localhost:3000/exercises.json").then((response) => {
-         console.log(response.data);
-         setExercises(response.data);
-       });
-     };
+  const handleDestroyRoutine = (routine) => {
+    console.log("handleDestroyRoutine", routine);
+    axios.delete(`http://localhost:3000/routines/${routine.id}.json`).then((response) => {
+      setRoutines(routines.filter((p) => p.id !== routine.id));
+      handleCloseRoutine();
+    })
+  };
+
+
+
      useEffect(() => {
       handleIndexUsers();
       handleIndexExercises();
@@ -264,7 +273,7 @@ export function Content() {
   return (
     <main>
       <RoutinesModal show = {routinesVisible} onCloseRoutine = {handleCloseRoutine} >
-          <RoutinesShow routine = {currentRoutine} onUpdateRoutine = {handleUpdateRoutine}/>
+          <RoutinesShow routine = {currentRoutine} onUpdateRoutine = {handleUpdateRoutine} onDestroyRoutine = {handleDestroyRoutine} />
       </RoutinesModal>
 
       <RoutinesIndex routines = {routines} onShowRoutine = {handleShowRoutine} />
