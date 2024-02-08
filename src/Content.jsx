@@ -18,6 +18,8 @@ import { ExercisesModal } from "./ExercisesModal";
 import { ExercisesNew } from "./ExercisesNew";
 import { ExercisesShow } from "./ExercisesShow";
 import { MuscleGroupsIndex } from "./MuscleGroupsIndex";
+import { RoutinesIndex } from "./RoutinesIndex";
+import { RoutinesNew } from "./RoutinesNew";
 
 export function Content() {
   const [users, setUsers] = useState([]);
@@ -32,6 +34,16 @@ export function Content() {
 
   const [exerciseRoutineVisible, setExerciseRoutineVisible] = useState(false);
   const [currentExerciseRoutine, setCurrentExerciseRoutine] = useState({});
+
+  const [routines, setRoutines] = useState([]);
+
+  const handleIndexRoutines = () =>{
+    console.log(handleIndexRoutines);
+    axios.get("http://localhost:3000/routines.json").then((response)=>{
+      console.log(response.data);
+      setRoutines(response.data);
+    })
+  };
 
   const handleIndexUsers = () => {
     console.log("handleIndexUsers");
@@ -56,6 +68,15 @@ export function Content() {
     });
   };
 
+
+
+  const handleCreateRoutine = (params, successCallback) =>{
+    console.log("handleCreateRoutine", params);
+    axios.post("http://localhost:3000/routines.json", params).then((response)=>{
+      setRoutines([...routines, response.data]);
+      successCallback();
+    });
+  };
 
   const handleCreateUser = (params, successCallback) => {
     console.log("handleCreateUser", params);
@@ -204,28 +225,30 @@ export function Content() {
       handleIndexUsers();
       handleIndexExercises();
       handleIndexMuscles();
-      handleIndexExerciseRoutines(); // Moved this useEffect call here
+      handleIndexExerciseRoutines();
+      handleIndexRoutines(); // Moved this useEffect call here
     }, []);
   return (
     <main>
-      <ExerciseRoutinesNew onCreateExerciseRoutine ={handleCreateExerciseRoutine}/>
+      <RoutinesIndex routines = {routines} />
+      <RoutinesNew onCreateRoutine = {handleCreateRoutine} />
 
-      <ExerciseRoutinesIndex exerciseRoutines = {exerciseRoutines} onShowExerciseRoutine = {handleShowExcerciseRoutine}/>
-
-      <ExerciseRoutinesModal show = {exerciseRoutineVisible} onCloseExerciseRoutine={handleCloseExcerciseRoutine}>
-        <ExerciseRoutinesShow currentExcerciseRoutine = {currentExerciseRoutine} onUpdateExerciseRoutine={handleUpdateExcerciseRoutine} onDestroyExerciseRoutine={handleDestroyExerciseRoutine}/>
-      </ExerciseRoutinesModal>
 
       <Routes>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/users" element={<UsersIndex users = {users} onShowUser = {handleShowUser}/>} />
+        <Route path="/signup" element = {<Signup />} />
+        <Route path="/login" element = {<Login />} />
+        <Route path="/logout" element = {<Logout />} />
+        <Route path="/users" element = {<UsersIndex users = {users} onShowUser = {handleShowUser}/>} />
 
         <Route path="/new-exercises" element={<ExercisesNew onCreateExercise={handleCreateExercise} />} />
         <Route path="/exercises" element={<ExercisesIndex exercises={exercises} onShowExercise={handleShowExercise} />} />
 
         <Route path="/" element={<MuscleGroupsIndex muscles={muscles}/>} />
+
+        <Route path="/new_exercise_routine" element={<ExerciseRoutinesNew onCreateExerciseRoutine ={handleCreateExerciseRoutine}/>} />
+        <Route path="/exercise_routines" element={<ExerciseRoutinesIndex exerciseRoutines = {exerciseRoutines} onShowExerciseRoutine = {handleShowExcerciseRoutine}/>
+} />
+
       </Routes>
       {/* <UsersNew onCreateUser = {handleCreateUser}/> */}
       <Modal show={isUsersShowVisible} onClose = {handleClose}>
@@ -235,6 +258,10 @@ export function Content() {
       <ExercisesModal show={isExercisesShowVisible} onCloseExercise={handleCloseExercise}>
         <ExercisesShow exercise={currentExercise} onUpdateExercise={handleUpdateExercise} onDestroyExercise={handleDestroyExercise}/>
       </ExercisesModal>
+      
+      <ExerciseRoutinesModal show = {exerciseRoutineVisible} onCloseExerciseRoutine={handleCloseExcerciseRoutine}>
+        <ExerciseRoutinesShow currentExcerciseRoutine = {currentExerciseRoutine} onUpdateExerciseRoutine={handleUpdateExcerciseRoutine} onDestroyExerciseRoutine={handleDestroyExerciseRoutine}/>
+      </ExerciseRoutinesModal>
     </main>
   )
 }

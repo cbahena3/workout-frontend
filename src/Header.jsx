@@ -12,7 +12,7 @@ export function Header() {
   return (
     <header>
       <nav>
-        <Link to="/">Home</Link> | <Link to="/signup">SignUp</Link> | <Link to="/login">Login</Link> | <a onClick= {handleClick} href="/logout">Logout</a> | <a href="/users">All Users</a> | <Link to="/new-exercises">Create Exercise </Link> | <Link to="/exercises">All Exercises</Link>
+        <Link to="/">Home</Link> | <Link to="/signup">SignUp</Link> | <Link to="/login">Login</Link> | <a onClick= {handleClick} href="/logout">Logout</a> | <a href="/users">All Users</a> | <Link to="/new-exercises">Create Exercise </Link> | <Link to="/exercises">All Exercises</Link> | <Link to="/new_exercise_routine">New Exercise Routine</Link> | <Link to="/exercise_routines">All Exercise Routines</Link> | 
       </nav>
     </header>
   )

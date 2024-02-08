@@ -35,8 +35,8 @@ export function UsersShow(props) {
             Password Confirmation: <input defaultValue={props.user.password_confirmation} name="height" type="password" />
           </div>
           <button type="submit">Update user</button>
-          <button onClick={handleClick}>Delete user</button>
         </form>
+          <button onClick={handleClick}>Delete user</button>
       </div>
     </div>
   );

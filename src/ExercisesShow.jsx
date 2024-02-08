@@ -30,8 +30,8 @@ export function ExercisesShow(props) {
           Description: <input defaultValue={props.exercise.height} name="description" type="text" />
         </div>
         <button type="submit">Update exercise</button>
-        <button onClick={handleClick}>Delete exercise</button>
       </form>
+        <button onClick={handleClick}>Delete exercise</button>
     </div>
   );
 }
