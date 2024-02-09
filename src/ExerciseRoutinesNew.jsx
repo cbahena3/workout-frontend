@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export function ExerciseRoutinesNew(props) {
   const [exercises, setExercises] = useState([]);
+  const [routines, setRoutines] = useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,8 +18,15 @@ export function ExerciseRoutinesNew(props) {
     setExercises(response.data);
     })
   }
+  const getRoutine = () => {
+    axios.get("http://localhost:3000/routines.json").then((response) => {
+    console.log(response.data);
+    setRoutines(response.data);
+    })
+  };
 
   useEffect(getExercise, []);
+  useEffect(getRoutine,[])
 
   return(
     <div>
@@ -26,14 +34,19 @@ export function ExerciseRoutinesNew(props) {
       <form onSubmit={handleSubmit}>
         <div>
           <label>Choose an Exercise:</label>
-          <select name="exercise" id="exercise">
-            {exercises.map((exercise) => (
+          <select name="exercise" id="exercise" >
+            {exercises.map((exercise) => (             
               <option key={exercise.name}>{exercise.name}</option>
             ))};
           </select>
         </div>
         <div>
-          Routine ID: <input name="routine_id" type="text" />
+          <label>Choose a routine</label>
+          <select name="routine" id="routine">
+            {routines.map((routine) => (
+              <option key={routine.name}>{routine.name}</option>
+            ))}
+          </select>
         </div>
         <div>
           Sets: <input name="sets" type="text" />
