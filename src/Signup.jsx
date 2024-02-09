@@ -25,30 +25,11 @@ export function Signup() {
   return (
     <div id="signup">
       <h1>Sign Up</h1>
-      {/* <ul>
+      <ul>
         {errors.map((error) => (
           <li key={error}>{error}</li>
         ))}
-      </ul> */}
-      {/* <form onSubmit={handleSubmit}>
-        <div>
-          Name: <input name="name" type="text" />
-        </div>
-        <div>
-          Profile Photo: <input name="image_url" type="text" />
-        </div>
-        <div>
-          Email: <input name="email" type="text" />
-        </div>
-        <div>
-          Password: <input name="password" type="password" />
-        </div>
-        <div>
-          Password confirmation: <input name="password_confirmation" type="password" />
-        </div>
-        <button type="submit"className="btn btn-primary" >Create Account</button>
-      </form> */}
-
+      </ul>
       <form className="row g-3" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <label htmlFor="inputname" className="form-label" >Name:</label>
@@ -68,7 +49,7 @@ export function Signup() {
         </div>
         <div className="col-12">
           <label htmlFor="inputCity" className="form-label">Profile Photo:</label>
-          <input name="image_url" type="text" className="form-control" id="inputCity"/>
+          <input name="image_url" type="text" className="form-control" id="inputCity" placeholder="Image Url"/>
         </div>
         
         <div className="col-12">
@@ -83,8 +64,6 @@ export function Signup() {
           <button type="submit" className="btn btn-primary">Create Account</button>
         </div>
       </form>
-
-
     </div>
   );
 }
