@@ -29,10 +29,10 @@ export function UsersShow(props) {
             Email: <input defaultValue={props.user.email} name="email" type="text" />
           </div>
           <div>
-            Password: <input defaultValue={props.user.password} name="height" type="password" />
+            Password: <input defaultValue={props.user.password} name="password" type="password" />
           </div>
           <div>
-            Password Confirmation: <input defaultValue={props.user.password_confirmation} name="height" type="password" />
+            Password Confirmation: <input defaultValue={props.user.password_confirmation} name="password_confirmation" type="password" />
           </div>
           <button type="submit">Update user</button>
         </form>

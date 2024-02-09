@@ -44,7 +44,7 @@ export function ExerciseRoutinesNew(props) {
           <label>Choose a routine</label>
           <select name="routine" id="routine">
             {routines.map((routine) => (
-              <option key={routine.name}>{routine.name}</option>
+              <option key={routine.id}>{routine.name}</option>
             ))}
           </select>
         </div>
