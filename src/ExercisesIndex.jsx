@@ -1,5 +1,17 @@
 /* eslint-disable react/prop-types */
+// import axios from "axios";
+// import { useEffect, useState } from "react";
+
 export function ExercisesIndex(props){
+  // const [muscleGroups, setMuscleGroups] = useState([]);
+  // const getMuscleGroup = () => {
+  //   axios.get("http://localhost:3000/muscle_groups.json").then((response) => {
+  //   console.log(response.data);
+  //   setMuscleGroups(response.data);
+  //   })
+  // }
+  // useEffect(getMuscleGroup, []);
+
   return(
     <div>
       <h1>All Exercises</h1>
@@ -7,9 +19,11 @@ export function ExercisesIndex(props){
       <div key={exercise.id}>
         <h2>{exercise.name}</h2>
         <img src={exercise.image_url} />
-        {/* <video src={exercise.video_url} controls></video>  WILL NOT RUN VIDEO */}
         <p>Description: {exercise.description}</p>
-        {/* <p>Muscles Used:</p> cant get this to show */}
+        {/* <p>Muscles Used: {exercise.muscle_groups}</p> */}
+        {/* {muscleGroups.map((muscle_groups) => (
+              <p key={muscle_groups.id}>{muscle_groups.name}</p>
+            ))} */}
         <button onClick={() => props.onShowExercise(exercise)}>More info</button>
       </div>
      ))}
