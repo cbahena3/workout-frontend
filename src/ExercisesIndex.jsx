@@ -14,18 +14,17 @@ export function ExercisesIndex(props){
 
   return(
     <div>
-      <h1>All Exercises</h1>
+      <h1 className="text-center" >All Exercises</h1>
+      
       {props.exercises.map((exercise) => (
-      <div key={exercise.id}>
-        <h2>{exercise.name}</h2>
-        <img src={exercise.image_url} />
-        <p>Description: {exercise.description}</p>
-        {/* <p>Muscles Used: {exercise.muscle_groups}</p> */}
-        {/* {muscleGroups.map((muscle_groups) => (
-              <p key={muscle_groups.id}>{muscle_groups.name}</p>
-            ))} */}
-        <button onClick={() => props.onShowExercise(exercise)}>More info</button>
-      </div>
+      <div className="card container mb-3" style={{width: "25rem"}} key={exercise.id}>       
+        <img src={exercise.image_url} className="card-img-top"/>
+        <div className="card-body text-center">
+          <h5 className="card-title">{exercise.name}</h5>
+          <p className="card-text">{exercise.description}</p>
+          <button onClick={() => props.onShowExercise(exercise)} className="btn btn-primary shadow">More info</button>        
+        </div>
+      </div>     
      ))}
     </div>
   )

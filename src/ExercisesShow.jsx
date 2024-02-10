@@ -10,9 +10,9 @@ export function ExercisesShow(props) {
     window.location = "/"
   };
   return (
-    <div>
+    <div className="modal-body">
       <h1>Exercise information</h1>
-      <h2>Name: {props.exercise.name}</h2>
+      <h2>{props.exercise.name}</h2>
       <iframe 
           width="600" 
           height="400" 
@@ -23,22 +23,48 @@ export function ExercisesShow(props) {
         ></iframe>
       <p><img src={props.exercise.image_url}/></p>
       <p>Description: {props.exercise.description}</p>
-      <form onSubmit={handleSubmit}>
+      <h3>Update Information:</h3>
+      <form className="row g-3" onSubmit={handleSubmit}>
+        <div className="col-7">
+          <label htmlFor="name" className="form-label">Name:</label>
+          <input defaultValue={props.exercise.name} name="name" type="text" className="form-control" id="name"/>
+        </div>
+        <div className="col-7">
+          <label htmlFor="image_url" className="form-label">Image:</label>
+          <input defaultValue={props.exercise.image_url} name="image_url" type="text" className="form-control" id="image_url"/>
+        </div>
+        <div className="col-7">
+          <label htmlFor="video_url" className="form-label">Video:</label>
+          <input defaultValue={props.exercise.video_url} name="video_url" type="text" className="form-control" id="video_url"/>
+        </div>
+        <div className="col-7">
+          <label htmlFor="description" className="form-label">Description:</label>
+          <input defaultValue={props.exercise.description} name="description" type="text" className="form-control" id="description" />
+        </div>
+        <div className="col-12">
+          <button type="submit" className="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+      <br />
+      <button onClick={handleClick} className="btn btn-secondary">Delete exercise</button>
+    </div>
+  );
+}
+
+
+{/* <form onSubmit={handleSubmit}>
         <div>
           Name: <input defaultValue={props.exercise.name} name="name" type="text" />
         </div>
         <div>
-          Image: <input defaultValue={props.exercise.url} name="image_url" type="text" />
+          Image: <input defaultValue={props.exercise.image_url} name="image_url" type="text" />
         </div>
         <div>
-          Video: <input defaultValue={props.exercise.width} name="video_url" type="text" />
+          Video: <input defaultValue={props.exercise.video_url} name="video_url" type="text" />
         </div>
         <div>
-          Description: <input defaultValue={props.exercise.height} name="description" type="text" />
+          Description: <input defaultValue={props.exercise.description} name="description" type="text" />
         </div>
-        <button type="submit">Update exercise</button>
+        <button type="submit">Save Changes</button>
       </form>
-        <button onClick={handleClick}>Delete exercise</button>
-    </div>
-  );
-}
+        <button onClick={handleClick}>Delete exercise</button> */}
