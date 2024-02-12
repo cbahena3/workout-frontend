@@ -2,7 +2,7 @@
 export function MuscleGroupsIndex(props) {
   return (
     <div>
-      <h1>Benefits of Exercise</h1>
+      <h1 className="">Benefits of Exercise</h1>
       <iframe 
           width="600" 
           height="400" 

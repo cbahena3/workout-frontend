@@ -14,7 +14,7 @@ export function RoutinesShow(props) {
     <div className="modal-body">
       <h1>Routine Information </h1>
         <h2>Creator:{props.routine.user}</h2>
-        <p>Routine Name:{props.routine.name} </p>
+        <p>Current Routine Name:{props.routine.name} </p>
         <form onSubmit={handleSubmit} className="row g-3">
           <div className="col-7">
 

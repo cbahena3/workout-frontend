@@ -10,10 +10,12 @@ export function ExercisesShow(props) {
     window.location = "/"
   };
   return (
-    <div className="modal-body">
+    <div className="modal-body overflow-auto" style={{ maxHeight: '80vh'}}>
       <h1>Exercise information</h1>
       <h2>{props.exercise.name}</h2>
-      <iframe 
+      <div className="embed-responsive embed-responsive-16by9">
+        <iframe 
+          className="embed-responsive-item"
           width="600" 
           height="400" 
           src={`https://www.youtube.com/embed/${props.exercise.video_url}`}
@@ -21,7 +23,8 @@ export function ExercisesShow(props) {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowFullScreen
         ></iframe>
-      <p><img src={props.exercise.image_url}/></p>
+      </div>
+      <p ><img src={props.exercise.image_url}/></p>
       <p>Description: {props.exercise.description}</p>
       <h3>Update Information:</h3>
       <form className="row g-3" onSubmit={handleSubmit}>

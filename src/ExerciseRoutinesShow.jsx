@@ -70,7 +70,7 @@ export function ExerciseRoutinesShow(props) {
         <button type="submit" className="d-grid gap-2 col-6 mx-auto btn btn btn-primary" >Save Changes</button>
       </form>
       <br />
-        <button className="d-grid gap-2 col-6 mx-auto btn btn-secondary" onClick={handleClick}>Remove Exercise From outine</button>
+        <button className="d-grid gap-2 col-6 mx-auto btn btn-secondary" onClick={handleClick}>Remove Exercise From Routine</button>
     </div>
   );
 }
