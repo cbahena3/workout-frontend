@@ -13,8 +13,8 @@ export function RoutinesShow(props) {
   return(
     <div className="modal-body">
       <h1>Routine Information </h1>
-        <h2>Routine ID:{props.routine.id}</h2>
-        <p>Day:{props.routine.name} </p>
+        <h2>Creator:{props.routine.user}</h2>
+        <p>Routine Name:{props.routine.name} </p>
         <form onSubmit={handleSubmit} className="row g-3">
           <div className="col-7">
 

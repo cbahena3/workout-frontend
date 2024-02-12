@@ -8,7 +8,7 @@ export function RoutinesIndex(props){
           <div className="card-body text-center">
             <h2 className="card-title">{routine.name} </h2>
             <hr />
-            <h3>Exercise List:</h3>
+            
           </div>
             {routine.exercise_routines.map((exercise_routine)=>
             <div className="card-body text-center"key={exercise_routine.id}>

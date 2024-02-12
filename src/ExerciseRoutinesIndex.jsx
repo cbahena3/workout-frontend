@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+
 export function ExerciseRoutinesIndex(props){
   return(
     <div>
@@ -6,8 +7,8 @@ export function ExerciseRoutinesIndex(props){
       {props.exerciseRoutines.map((exerciseRoutine) => (
         <div className="card container mb-3" style={{width: "25rem"}} key={exerciseRoutine.id}>
           <div className="card-body text-center">
-            <h2 className="card-title">Exercise ID: {exerciseRoutine.exercise_id}</h2>
-            <p className="card-text"> Routine ID: {exerciseRoutine.routine_id} </p>
+            <h2 className="card-title">Exercise: {exerciseRoutine.name}</h2>
+            <p className="card-text"> Routine Name: {exerciseRoutine.routine_name} </p>
             <p className="card-text">Sets: {exerciseRoutine.sets}</p>
             <p className="card-text">Reps: {exerciseRoutine.reps}</p>
             <button className="btn btn-primary shadow" onClick={() => props.onShowExerciseRoutine(exerciseRoutine)}>More info</button>          
