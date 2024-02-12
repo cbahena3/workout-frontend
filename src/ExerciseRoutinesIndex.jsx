@@ -2,14 +2,16 @@
 export function ExerciseRoutinesIndex(props){
   return(
     <div>
-      <h1>Exercise Routines Available</h1>
+      <h1 className="text-center">Exercise Routines Available</h1>
       {props.exerciseRoutines.map((exerciseRoutine) => (
-        <div key={exerciseRoutine.id}>
-          <h2>Exercise ID: {exerciseRoutine.exercise_id}</h2>
-          <p> Routine ID: {exerciseRoutine.routine_id} </p>
-          <p>Sets: {exerciseRoutine.sets}</p>
-          <p>Reps: {exerciseRoutine.reps}</p>
-          <button onClick={() => props.onShowExerciseRoutine(exerciseRoutine)}>More info</button>
+        <div className="card container mb-3" style={{width: "25rem"}} key={exerciseRoutine.id}>
+          <div className="card-body text-center">
+            <h2 className="card-title">Exercise ID: {exerciseRoutine.exercise_id}</h2>
+            <p className="card-text"> Routine ID: {exerciseRoutine.routine_id} </p>
+            <p className="card-text">Sets: {exerciseRoutine.sets}</p>
+            <p className="card-text">Reps: {exerciseRoutine.reps}</p>
+            <button className="btn btn-primary shadow" onClick={() => props.onShowExerciseRoutine(exerciseRoutine)}>More info</button>          
+          </div>
         </div>))}
     </div>
   )
