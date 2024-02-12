@@ -8,12 +8,14 @@ export function RoutinesNew(props){
 
   return(
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="row g-3" onSubmit={handleSubmit}>
         <h2>Create New Routine:</h2>
-        <div>
-          <p>Day: <input name="name" type="text" /></p>
+
+        <div className="col-md-6">
+          <label htmlFor="name" className="form-label">Routine Name:</label>
+          <input name="name" type="text" className="form-control" id="name" placeholder="Pull Day"/>
         </div>
-        <button>Create routine</button>
+        <button type="submit" className="btn btn-primary">Create routine</button>
       </form>
     </div>
   )

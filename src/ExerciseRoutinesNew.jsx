@@ -29,32 +29,34 @@ export function ExerciseRoutinesNew(props) {
   useEffect(getRoutine,[])
 
   return(
-    <div>
+    <div className="modal-body">
       <h1>Add exercise to routine</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="row g-3" onSubmit={handleSubmit}>
         <div>
-          <label>Choose an Exercise:</label>
-          <select name="exercise" id="exercise" >
+          <label htmlFor="exercise" className="form-label">Choose an Exercise:</label>
+          <select className="form-select" name="exercise" id="exercise" >
             {exercises.map((exercise) => (             
               <option key={exercise.name}>{exercise.name}</option>
             ))};
           </select>
         </div>
         <div>
-          <label>Choose a routine</label>
-          <select name="routine" id="routine">
+          <label htmlFor="routine" className="form-label">Choose a routine</label>
+          <select className="form-select" name="routine" id="routine">
             {routines.map((routine) => (
               <option key={routine.id}>{routine.name}</option>
             ))}
           </select>
         </div>
-        <div>
-          Sets: <input name="sets" type="text" />
+        <div className="col-6">
+          <label htmlFor="sets" className="form-label">Sets:</label>
+          <input defaultValue= "3" name="sets" type="text" className="form-control" id="sets"/>
         </div>
-        <div>
-          Reps: <input name="reps" type="text" />
+        <div className="col-6">
+          <label htmlFor="reps" className="form-label">Reps:</label>
+          <input defaultValue="12" name="reps" type="text" className="form-control" id="reps"/>
         </div>
-        <button type="submit">Add to routine</button>
+        <button type="submit" className="btn btn-primary" >Add to routine</button>
       </form>
     </div>
   );
