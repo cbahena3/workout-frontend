@@ -2,32 +2,25 @@
 export function RoutinesIndex(props){
   return(
     <div>
-      <h1>Routines</h1>
+      <h1 className="text-center" >Routines</h1>
       {props.routines.map((routine)=>(
-        <div key={routine.id}>
-          <h2>Routine ID:{routine.id}</h2>
-          <p>User_ID:{routine.user_id}</p>
-          <p>Day:{routine.name} </p>
-          <h3>Exercise List:</h3>
+        <div className="card container mb-3" style={{width: "40rem"}} key={routine.id}>
+          <div className="card-body text-center">
+            <h2 className="card-title">{routine.name} </h2>
             <hr />
+            <h3>Exercise List:</h3>
+          </div>
             {routine.exercise_routines.map((exercise_routine)=>
-            <div key={exercise_routine.id}>
-              <p>Exercise: {exercise_routine.name}</p>
-              <p>Sets: {exercise_routine.sets}</p>
-              <p>Reps: {exercise_routine.reps}</p>
+            <div className="card-body text-center"key={exercise_routine.id}>
+              <p className="card-text">Exercise: {exercise_routine.name}</p>
+              <p className="card-text">Sets: {exercise_routine.sets}</p>
+              <p className="card-text">Reps: {exercise_routine.reps}</p>
               <hr />
             </div>
             )} 
-          <button onClick={() => props.onShowRoutine(routine)}> More Info </button>
+          <button onClick={() => props.onShowRoutine(routine)} className="btn btn-primary shadow"> More Info </button>
         </div>
       ))}
     </div>
   )
 }
-
-{/* 
-          json.exercise_routines routine.exercise_routines do |exercise_routine|
-  json.name exercise_routine.exercise.name
-  json.sets exercise_routine.sets
-  json.reps exercise_routine.reps
-end */}
