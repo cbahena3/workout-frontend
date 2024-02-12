@@ -8,7 +8,7 @@ export function ExerciseRoutinesIndex(props){
         <div className="card container mb-3" style={{width: "25rem"}} key={exerciseRoutine.id}>
           <div className="card-body text-center">
             <h2 className="card-title">Exercise: {exerciseRoutine.name}</h2>
-            <p className="card-text"> Routine Name: {exerciseRoutine.routine_name} </p>
+            <p className="card-text"> Routine: {exerciseRoutine.routine_name} </p>
             <p className="card-text">Sets: {exerciseRoutine.sets}</p>
             <p className="card-text">Reps: {exerciseRoutine.reps}</p>
             <button className="btn btn-primary shadow" onClick={() => props.onShowExerciseRoutine(exerciseRoutine)}>More info</button>          
