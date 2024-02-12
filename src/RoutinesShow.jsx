@@ -11,17 +11,22 @@ export function RoutinesShow(props) {
   };
 
   return(
-    <div>
+    <div className="modal-body">
       <h1>Routine Information </h1>
         <h2>Routine ID:{props.routine.id}</h2>
         <p>Day:{props.routine.name} </p>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <p>Day: <input name="name" type="text" /></p>
+        <form onSubmit={handleSubmit} className="row g-3">
+          <div className="col-7">
+
+            <label htmlFor="name" className="form-label">Routine Name:</label>
+            <input defaultValue={props.routine.name} name="name" type="text" className="form-control" id="name"/>
           </div>
-          <button type="submit">Update Routine</button>
+          <div className="d-grid gap-2 col-6 mx-auto">
+            <button type="submit" className="btn btn-primary" >Save Changes</button>
+          </div>  
         </form>
-        <button onClick={handleClick}>Delete Routine</button>
+        <br />
+        <button onClick={handleClick} className="d-grid gap-2 col-6 mx-auto btn btn-secondary" >Delete Routine</button>
     </div>
   )
 }
