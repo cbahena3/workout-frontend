@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import axios from "axios"
+import { useEffect, useState } from "react";
 
 export function Header() {
   const handleClick = (event) => {
@@ -8,6 +9,12 @@ export function Header() {
     localStorage.removeItem("jwt");
     // window.location.href = "/";
   }
+
+  const[jwtExists, setJwtExists] = useState(localStorage.getItem("jwt") !== null ? true : false);
+  useEffect(()=>{
+    localStorage.getItem("jwt") !== null ? setJwtExists(true) : setJwtExists(false);
+  },[]);
+  console.log(`JWT: ${jwtExists}`)
 
   return (
     <header>
@@ -22,17 +29,6 @@ export function Header() {
             <Link className="nav-link active" aria-current="page" to="/">Home</Link>
           </li>
 
-          <li className="nav-item">
-            <Link className="nav-link active" aria-current="page" to="/signup">Signup</Link>
-          </li>
-
-          <li className="nav-item">
-            <Link className="nav-link active" aria-current="page" to="/login">Login</Link>
-          </li>
-
-          <li className="nav-item">
-            <a className="nav-link active" aria-current="page" onClick= {handleClick} href="/logout">Logout</a>
-          </li>
 
           <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,6 +66,24 @@ export function Header() {
           <li className="nav-item">
             <Link className="nav-link active" aria-current="page" to={"/users"}> Members</Link> 
           </li>
+
+          {jwtExists === true ? 
+            (
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" onClick= {handleClick} href="/logout">Logout</a>
+            </li>
+            ) : 
+            (
+            <>
+              <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to="/signup">Signup</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to="/login">Login</Link>
+              </li>
+            </>
+            )
+          }
         </ul>
         <form className="d-flex" role="search">
           <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
