@@ -4,8 +4,8 @@ export function MuscleGroupsIndex(props) {
     <div className="text-center">
       <h1 className="">Benefits of Exercise</h1>
       <iframe 
-          width="600" 
-          height="400" 
+          width="750" 
+          height="450" 
           src="https://www.youtube.com/embed/5m6qpyeDrqI" 
           title="YouTube video player" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -14,6 +14,7 @@ export function MuscleGroupsIndex(props) {
       <h2 >Select Muscle Group</h2>
       {props.muscles.map((muscle)=>(
         <div key={muscle.id} >
+          <img src="{muscle.image_url}"/>
           <h2>{muscle.name}</h2>
         </div>
       ))}
