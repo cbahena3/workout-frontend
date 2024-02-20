@@ -1,23 +1,25 @@
 /* eslint-disable react/prop-types */
 export function MuscleGroupsIndex(props) {
   return (
-    <div className="text-center">
-      <h1 className="">Benefits of Exercise</h1>
+    <div className="text-center ">
+      <h2 className="">Benefits of Exercise</h2>
       <iframe 
-          width="750" 
-          height="450" 
+          width={700}
+          height={350}
           src="https://www.youtube.com/embed/5m6qpyeDrqI" 
           title="YouTube video player" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowFullScreen
         ></iframe>
-      <h2 >Select Muscle Group</h2>
+      <h2 >Muscle Groups</h2>
       {props.muscles.map((muscle)=>(
         <div key={muscle.id} >
-          <img src="{muscle.image_url}"/>
-          <h2>{muscle.name}</h2>
+          <a href="">  <img className="w-50 p-3"src={muscle.image_url} /> </a>
+          <br />
+          <button type="button" className="btn btn-dark shadow w-25 p-2 border border-primary">{muscle.name}</button>
         </div>
       ))}
+      <br />
     </div>
   );
 }
