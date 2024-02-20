@@ -34,7 +34,7 @@ export function ExerciseRoutinesShow(props) {
   useEffect(getRoutine,[])
 
   return(
-    <div className="modal-body">
+    <div className="modal-body border border-primary-subtle">
       <h1>Exercise Routine information</h1>
       <h2>Exercise: {props.currentExcerciseRoutine.name}</h2>
       <p> Routine: {props.currentExcerciseRoutine.routine_name} </p>
@@ -42,31 +42,29 @@ export function ExerciseRoutinesShow(props) {
       <p>Reps: {props.currentExcerciseRoutine.reps}</p>
       <form className="row g-3" onSubmit={handleSubmit}>
       <div>
-          <label htmlFor="exercise" className="form-label">Choose an Exercise:</label>
-          <select className="form-select" name="exercise" id="exercise" >
-            {exercises.map((exercise) => (             
-              <option key={exercise.name}>{exercise.name}</option>
-            ))};
-          </select>
-        </div>
-        <div>
-          <label htmlFor="routine" className="form-label">Choose a routine</label>
-          <select className="form-select" name="routine" id="routine">
-            {routines.map((routine) => (
-              <option key={routine.id}>{routine.name}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-
-          <label htmlFor="sets" className="form-label">Sets:</label>
-          <input defaultValue={props.currentExcerciseRoutine.sets} name="sets" type="text" className="form-control" id="sets"/>
-        </div>
-        <div>
-
-          <label htmlFor="reps" className="form-label">Reps:</label>
-          <input defaultValue={props.currentExcerciseRoutine.reps} name="reps" type="text" className="form-control" id="reps"/>
-        </div>
+        <label htmlFor="exercise" className="form-label">Choose an Exercise:</label>
+        <select className="form-select" name="exercise" id="exercise" >
+          {exercises.map((exercise) => (             
+            <option key={exercise.name}>{exercise.name}</option>
+          ))};
+        </select>
+      </div>
+      <div>
+        <label htmlFor="routine" className="form-label">Choose a routine</label>
+        <select className="form-select" name="routine" id="routine">
+          {routines.map((routine) => (
+            <option key={routine.id}>{routine.name}</option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label htmlFor="sets" className="form-label">Sets:</label>
+        <input defaultValue={props.currentExcerciseRoutine.sets} name="sets" type="text" className="form-control" id="sets"/>
+      </div>
+      <div>
+        <label htmlFor="reps" className="form-label">Reps:</label>
+        <input defaultValue={props.currentExcerciseRoutine.reps} name="reps" type="text" className="form-control" id="reps"/>
+      </div>
         <button type="submit" className="d-grid gap-2 col-6 mx-auto btn btn btn-primary" >Save Changes</button>
       </form>
       <br />

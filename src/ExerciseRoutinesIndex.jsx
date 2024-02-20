@@ -5,7 +5,7 @@ export function ExerciseRoutinesIndex(props){
     <div>
       <h1 className="text-center">Exercise Routines Available</h1>
       {props.exerciseRoutines.map((exerciseRoutine) => (
-        <div className="card container mb-3" style={{width: "25rem"}} key={exerciseRoutine.id}>
+        <div className="card container mb-4 border border-primary-subtle" style={{width: "28rem"}} key={exerciseRoutine.id}>
           <div className="card-body text-center">
             <h2 className="card-title">Exercise: {exerciseRoutine.name}</h2>
             <p className="card-text"> Routine: {exerciseRoutine.routine_name} </p>

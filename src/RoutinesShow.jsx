@@ -11,7 +11,7 @@ export function RoutinesShow(props) {
   };
 
   return(
-    <div className="modal-body">
+    <div className="modal-body border border-primary-subtle">
       <h1>Routine Information </h1>
         <h2>Creator:{props.routine.user}</h2>
         <p>Current Routine Name:{props.routine.name} </p>

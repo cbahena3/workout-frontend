@@ -2,10 +2,10 @@
 export function UsersIndex(props) {
 
   return (
-    <div>
+    <div >
       <h1 className="text-center">All users</h1>
       {props.users.map((user) => (
-        <div key={user.id} className="card container mb-3" style={{width: "25rem"}}>
+        <div key={user.id} className="card container mb-4 border border-primary-subtle" style={{width: "25rem"}}>
           <h2 className="card-title">{user.name}</h2>
           <div className="card-body text-center">
             <img className="card-img-top" src={user.image_url} />

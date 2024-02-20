@@ -10,7 +10,7 @@ export function ExercisesShow(props) {
     window.location = "/"
   };
   return (
-    <div className="modal-body overflow-auto" style={{ maxHeight: '80vh'}}>
+    <div className="modal-body overflow-auto border border-primary-subtle" style={{ maxHeight: '80vh'}}>
       <h1>Exercise information</h1>
       <h2>{props.exercise.name}</h2>
       <div className="embed-responsive embed-responsive-16by9">

@@ -4,7 +4,7 @@ export function RoutinesIndex(props){
     <div>
       <h1 className="text-center" >Routines</h1>
       {props.routines.map((routine)=>(
-        <div className="card container mb-3" style={{width: "40rem"}} key={routine.id}>
+        <div className="card container mb-3 border border-primary-subtle" style={{width: "40rem"}} key={routine.id}>
           <div className="card-body text-center">
             <h2 className="card-title">{routine.name} </h2>
             <hr />
