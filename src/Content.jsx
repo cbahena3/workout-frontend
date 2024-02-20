@@ -22,6 +22,7 @@ import { RoutinesIndex } from "./RoutinesIndex";
 import { RoutinesNew } from "./RoutinesNew";
 import { RoutinesModal } from "./RoutinesModal";
 import { RoutinesShow } from "./RoutinesShow";
+import { ArmsIndex } from "./ArmsIndex";
 
 export function Content() {
   const [users, setUsers] = useState([]);
@@ -277,6 +278,8 @@ export function Content() {
         <Route path="/login" element = {<Login />} />
         <Route path="/logout" element = {<Logout />} />
         <Route path="/users" element = {<UsersIndex users = {users} onShowUser = {handleShowUser}/>} />
+
+        <Route path="/arms" element = {<ArmsIndex />} />
 
         <Route path="/new-exercises" element={<ExercisesNew onCreateExercise={handleCreateExercise} />} />
         <Route path="/exercises" element={<ExercisesIndex exercises={exercises} onShowExercise={handleShowExercise} />} />
