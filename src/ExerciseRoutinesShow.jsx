@@ -18,13 +18,13 @@ export function ExerciseRoutinesShow(props) {
   };
 
   const getExercise = () => {
-    axios.get("http://localhost:3000/exercises.json").then((response) => {
+    axios.get("/exercises.json").then((response) => {
     console.log(response.data);
     setExercises(response.data);
     })
   }
   const getRoutine = () => {
-    axios.get("http://localhost:3000/routines.json").then((response) => {
+    axios.get("/routines.json").then((response) => {
     console.log(response.data);
     setRoutines(response.data);
     })
