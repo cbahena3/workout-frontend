@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./Exercisesmodal.css";
+import "./ExercisesModal.css";
 
 export function ExercisesModal(props) {
   if (props.show) {
