@@ -38,7 +38,7 @@ export function Header() {
               <li><Link className="dropdown-item" to="/exercises">All Exercises</Link></li>
               <li><hr className="dropdown-divider"/></li>
 
-              <li><a className="dropdown-item" href="#">Arms</a></li>
+              <li><Link className="dropdown-item" to="/arms">Arms</Link></li>
               <li><a className="dropdown-item" href="#">Chest</a></li>
               <li><a className="dropdown-item" href="#">Back</a></li>
               <li><a className="dropdown-item" href="#">Legs</a></li>

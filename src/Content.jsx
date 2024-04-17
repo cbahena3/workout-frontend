@@ -24,6 +24,7 @@ import { RoutinesModal } from "./RoutinesModal";
 import { RoutinesShow } from "./RoutinesShow";
 import { ArmsIndex } from "./ArmsIndex";
 
+
 export function Content() {
   const [users, setUsers] = useState([]);
   const [isUsersShowVisible, setIsUsersShowVisible] = useState(false);
@@ -43,6 +44,16 @@ export function Content() {
 
   const [routinesVisible, setRoutinesVisible] = useState(false);
   const [currentRoutine, setCurrentRoutine] = useState({});
+
+  const [arms, setArms] = useState();
+
+  const handleIndexArms = () => {
+    axios.get("/arms.json").then((response) => {
+      console.log(response.data);
+      setArms(response.data);
+    })
+  }
+
 
   const handleIndexRoutines = () =>{
     // console.log(handleIndexRoutines);
@@ -269,7 +280,8 @@ export function Content() {
       handleIndexExercises();
       handleIndexMuscles();
       handleIndexExerciseRoutines();
-      handleIndexRoutines(); // Moved this useEffect call here
+      handleIndexRoutines();
+      handleIndexArms() // Moved this useEffect call here
     }, []);
   return (
     <main>
@@ -279,7 +291,7 @@ export function Content() {
         <Route path="/logout" element = {<Logout />} />
         <Route path="/users" element = {<UsersIndex users = {users} onShowUser = {handleShowUser}/>} />
 
-        <Route path="/arms" element = {<ArmsIndex />} />
+        <Route path="/arms" element = {<ArmsIndex arms = {arms} />} />
 
         <Route path="/new-exercises" element={<ExercisesNew onCreateExercise={handleCreateExercise} />} />
         <Route path="/exercises" element={<ExercisesIndex exercises={exercises} onShowExercise={handleShowExercise} />} />

@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
+
 export function MuscleGroupsIndex(props) {
   return (
     <div className="text-center ">
@@ -16,7 +18,8 @@ export function MuscleGroupsIndex(props) {
         <div key={muscle.id} >
           <a href="">  <img className="w-50 p-3"src={muscle.image_url} /> </a>
           <br />
-          <button type="button" className="btn btn-dark shadow w-25 p-2 border border-primary">{muscle.name}</button>
+          <Link className="dropdown-item" to="/arms">Arms</Link>
+          <button type="button" className="btn btn-dark shadow w-25 p-2 border border-primary">{muscle.name} </button>
         </div>
       ))}
       <br />

@@ -47,9 +47,9 @@ export function Signup() {
           <label htmlFor="inputAddress2" className="form-label">Password Confirmation:</label>
           <input name="password_confirmation" type="password" className="form-control" id="inputAddress2" placeholder="8-20 Characters" maxLength={20} required/>
         </div>
-        <div className="col-12">
-          <label htmlFor="inputCity" className="form-label">Profile Photo:</label>
-          <input name="image_url" type="text" className="form-control" id="inputCity" placeholder="Image Url"/>
+        <div className="col-12">       
+          <label htmlFor="image_url" className="form-label">Profile Photo:</label>
+          <input name="image_url" className="form-control" type="file" id="image_url"/>
         </div>
         
         <div className="col-12">
