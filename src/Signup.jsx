@@ -12,12 +12,10 @@ export function Signup() {
     axios
       .post("/users.json", params)
       .then((response) => {
-        console.log(response.data);
         event.target.reset();
         window.location.href = "/"; // Change this to hide a modal, redirect to a specific page, etc.
       })
       .catch((error) => {
-        console.log(error.response.data.errors);
         setErrors(error.response.data.errors);
       });
   };

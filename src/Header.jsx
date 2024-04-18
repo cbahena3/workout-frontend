@@ -14,7 +14,6 @@ export function Header() {
   useEffect(()=>{
     localStorage.getItem("jwt") !== null ? setJwtExists(true) : setJwtExists(false);
   },[]);
-  // console.log(`JWT: ${jwtExists}`)
 
   return (
     <header>

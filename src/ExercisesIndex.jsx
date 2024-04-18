@@ -33,7 +33,7 @@ export function ExercisesIndex(props){
         <div className="card-body text-center">
           <h5 className="card-title">{exercise.name}</h5>
           <p className="card-text">{exercise.description}</p>
-          <p className="card-text">Muscles Used:   
+          <p className="card-text"> <b>Muscles Used:</b> </p>
           {usedMuscles.map((used_muscle) => {
             if (exercise.id === used_muscle.exercise_id) {
               return (
@@ -44,7 +44,7 @@ export function ExercisesIndex(props){
             }
             return null;
           })}
-          </p>
+          {/* </p> */}
           <button onClick={() => props.onShowExercise(exercise)} className="btn btn-primary shadow">More info</button>        
         </div>
       </div>     

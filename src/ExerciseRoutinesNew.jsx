@@ -14,13 +14,11 @@ export function ExerciseRoutinesNew(props) {
   
   const getExercise = () => {
     axios.get("/exercises.json").then((response) => {
-    console.log(response.data);
     setExercises(response.data);
     })
   }
   const getRoutine = () => {
     axios.get("/routines.json").then((response) => {
-    console.log(response.data);
     setRoutines(response.data);
     })
   };

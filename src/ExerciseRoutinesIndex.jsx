@@ -11,7 +11,7 @@ export function ExerciseRoutinesIndex(props){
             <p className="card-text"> Routine: {exerciseRoutine.routine_name} </p>
             <p className="card-text">Sets: {exerciseRoutine.sets}</p>
             <p className="card-text">Reps: {exerciseRoutine.reps}</p>
-            <button className="btn btn-primary shadow" onClick={() => props.onShowExerciseRoutine(exerciseRoutine)}>More info</button>          
+            <button className="btn btn-primary shadow" onClick={() => props.onShowExerciseRoutine(exerciseRoutine)}>Edit info</button>          
           </div>
         </div>))}
     </div>
