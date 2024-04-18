@@ -27,10 +27,10 @@ export function ExerciseRoutinesNew(props) {
   useEffect(getRoutine,[])
 
   return(
-    <div className="modal-body">
-      <h1>Add exercise to routine</h1>
+    <div className="modal-body" style={{padding: '20px'}}>
+      <h1 className="text-center">Add exercise to routine</h1>
       <form className="row g-3" onSubmit={handleSubmit}>
-        <div>
+        <div style={{padding: '25px'}}>
           <label htmlFor="exercise" className="form-label">Choose an Exercise:</label>
           <select className="form-select" name="exercise" id="exercise" >
             {exercises.map((exercise) => (             
@@ -38,7 +38,7 @@ export function ExerciseRoutinesNew(props) {
             ))};
           </select>
         </div>
-        <div>
+        <div style={{padding: '20px'}}>
           <label htmlFor="routine" className="form-label">Choose a routine</label>
           <select className="form-select" name="routine" id="routine">
             {routines.map((routine) => (
@@ -46,15 +46,17 @@ export function ExerciseRoutinesNew(props) {
             ))}
           </select>
         </div>
-        <div className="col-6">
+        <div className="col-6" style={{padding: '20px'}}>
           <label htmlFor="sets" className="form-label">Sets:</label>
-          <input defaultValue= "3" name="sets" type="text" className="form-control" id="sets"/>
+          <input placeholder= "3" name="sets" type="text" className="form-control" id="sets"/>
         </div>
-        <div className="col-6">
+        <div className="col-6" style={{padding: '20px'}}>
           <label htmlFor="reps" className="form-label">Reps:</label>
-          <input defaultValue="12" name="reps" type="text" className="form-control" id="reps"/>
+          <input placeholder="12" name="reps" type="text" className="form-control" id="reps"/>
         </div>
-        <button type="submit" className="btn btn-primary" >Add to routine</button>
+        <div className="col-12 text-center">
+          <button type="submit" className="btn btn-primary" style={{width: '50%'}}>Add to routine</button>
+        </div>
       </form>
     </div>
   );

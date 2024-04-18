@@ -11,9 +11,9 @@ export function UsersShow(props) {
 
   return (
     
-    <div className="modal-body overflow-auto border border-primary-subtle" style={{ maxHeight: '80vh' }}>
+    <div className="modal-body overflow-auto border border-primary-subtle" style={{ maxHeight: '90vh', padding:'25px' }}>
       <h1>{props.user.name}'s information</h1>
-      <p><img src = {props.user.image_url}/></p>
+      <p><img src = {props.user.image_url} style={{maxWidth: '75%'}}/></p>
       <p>Name: {props.user.name}</p>
       <p>email: {props.user.email}</p>
       <div>

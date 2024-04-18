@@ -3,7 +3,7 @@ export function UsersIndex(props) {
 
   return (
     <div >
-      <h1 className="text-center">All users</h1>
+      <h1 className="text-center" style={{padding: '20px'}}>All users</h1>
       {props.users.map((user) => (
         <div key={user.id} className="card container mb-4 border border-primary-subtle" style={{width: "25rem"}}>
           <h2 className="card-title">{user.name}</h2>
