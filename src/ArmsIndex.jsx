@@ -4,10 +4,10 @@ export function ArmsIndex(props){
   
   return(
     <div>
-      <h1>Arm Exercises</h1>
+      <h1 className="text-center">Arm Exercises</h1>
       {props.arms.map((arm) => (
         arm.id === 1 && (
-          <div key={arm.id}>
+          <div className="text-center" key={arm.id}>
             <h2>{arm.name}</h2>
             <p>{arm.description}</p>
             <p><img src={arm.image_url}/></p>
